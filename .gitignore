@@ -3,6 +3,9 @@ node_modules/
 .pnp
 .pnp.js
 
+# Next.js (any app, any depth)
+**/.next/
+
 # Build output
 dist/
 dist-ssr/

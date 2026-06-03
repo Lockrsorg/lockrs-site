@@ -1,0 +1,27 @@
+name: Copy or docs
+description: Fix wording, add missing info, or improve CONTRIBUTING / README
+title: "[docs]: "
+labels:
+  - documentation
+body:
+  - type: textarea
+    id: page
+    attributes:
+      label: Which page or file?
+      placeholder: e.g. homepage hero, content.ts COMPETITORS, CONTRIBUTING.md
+    validations:
+      required: true
+
+  - type: textarea
+    id: change
+    attributes:
+      label: What should change?
+    validations:
+      required: true
+
+  - type: input
+    id: discord
+    attributes:
+      label: Discord username (optional)
+      description: For follow-up on the [support server](https://discord.gg/DhaSM9FAZE).
+      placeholder: e.g. st3ix

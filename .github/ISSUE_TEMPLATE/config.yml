@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Discord support server
+    url: https://discord.gg/DhaSM9FAZE
+    about: Questions, ideas, or work in progress
+  - name: Desktop app (lockrs)
+    url: https://github.com/Lockrsorg/lockrs/issues
+    about: Vault app bugs and features belong in the desktop repo
