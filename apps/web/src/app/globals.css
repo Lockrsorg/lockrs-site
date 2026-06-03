@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+
+  --background: 0 0% 3%;
+  --foreground: 0 0% 98%;
+  --muted-foreground: 0 0% 62%;
+  --border: 0 0% 16%;
+
+  --glass: rgba(255, 255, 255, 0.04);
+  --glass-strong: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-highlight: rgba(255, 255, 255, 0.18);
+  --glass-blur: 40px;
+
+  --orb-one: rgba(255, 255, 255, 0.12);
+  --orb-two: rgba(140, 160, 255, 0.1);
+  --orb-three: rgba(255, 255, 255, 0.05);
+
+  --radius: 0.75rem;
+  --radius-lg: 1.25rem;
+  --accent: 220 90% 65%;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen bg-background text-foreground antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--accent) / 0.12), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(255, 255, 255, 0.04), transparent);
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply relative overflow-hidden rounded-lg border border-white/10;
+    background: linear-gradient(
+      180deg,
+      var(--glass-strong) 0%,
+      var(--glass) 100%
+    );
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+    box-shadow: var(--tw-shadow-glass, 0 0 0 1px rgba(255, 255, 255, 0.04) inset);
+  }
+
+  .glass-card::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0 opacity-40;
+    background: linear-gradient(
+      135deg,
+      var(--glass-highlight) 0%,
+      transparent 45%
+    );
+  }
+
+  .prose-section {
+    @apply glass-card p-8 md:p-10;
+  }
+
+  .prose-section h2 {
+    @apply font-display text-2xl font-semibold tracking-tight md:text-3xl;
+  }
+
+  .prose-section p {
+    @apply mt-4 text-base leading-relaxed text-muted;
+  }
+
+  .prose-section p:first-of-type {
+    @apply mt-5;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/90;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-foreground backdrop-blur transition hover:border-white/25 hover:bg-white/10;
+  }
+
+  .section-label {
+    @apply mb-8 text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-br from-white via-white to-white/50 bg-clip-text text-transparent;
+  }
+
+  .trust-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-muted;
+  }
+
+  .trust-badge svg {
+    @apply text-emerald-400/70;
+  }
+
+  .about-page {
+    @apply border-t border-white/5;
+  }
+
+  .about-back {
+    @apply mb-10 inline-flex items-center gap-2 text-sm text-muted transition hover:text-foreground;
+  }
+
+  .about-hero {
+    @apply text-center;
+  }
+
+  .about-hero__icon {
+    @apply mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-foreground;
+  }
+
+  .about-hero__title {
+    @apply font-display text-3xl font-semibold tracking-tight md:text-4xl;
+  }
+
+  .about-hero__lead {
+    @apply mx-auto mt-4 max-w-lg text-muted md:text-lg leading-relaxed;
+  }
+
+  .about-flow {
+    @apply mt-14 space-y-12 md:space-y-16;
+  }
+
+  .about-section__title {
+    @apply font-display text-xl font-semibold tracking-tight text-foreground md:text-2xl;
+  }
+
+  .about-section__body p {
+    @apply mt-4 text-base leading-relaxed text-muted;
+  }
+
+  .about-section__meta {
+    @apply mt-6 text-sm text-muted;
+  }
+
+  .about-section__meta a {
+    @apply font-medium text-foreground underline decoration-white/20 underline-offset-4 transition hover:decoration-white/40;
+  }
+
+  .about-checklist {
+    @apply mt-5 space-y-4;
+  }
+
+  .about-checklist li {
+    @apply relative border-l-2 border-emerald-500/25 pl-5 text-base leading-relaxed text-muted;
+  }
+
+  .about-claims {
+    @apply mt-6 divide-y divide-white/5 rounded-lg border border-white/10 bg-white/[0.02];
+  }
+
+  .about-claim {
+    @apply px-5 py-4 md:px-6 md:py-5;
+  }
+
+  .about-claim__badge {
+    @apply mb-1.5 block text-sm font-medium text-foreground;
+  }
+
+  .about-claim p {
+    @apply text-sm leading-relaxed text-muted;
+  }
+
+  .about-highlight {
+    @apply flex gap-4 rounded-lg border border-white/10 bg-white/[0.03] p-6 md:p-8;
+  }
+
+  .about-highlight__icon {
+    @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-muted;
+  }
+
+  .about-highlight__title {
+    @apply font-display text-lg font-semibold tracking-tight md:text-xl;
+  }
+
+  .about-highlight p {
+    @apply mt-2 text-sm leading-relaxed text-muted md:text-base;
+  }
+
+  .about-footer {
+    @apply mt-16 border-t border-white/10 pt-10 text-center;
+  }
+
+  .about-footer__stack {
+    @apply text-sm text-muted;
+  }
+}
