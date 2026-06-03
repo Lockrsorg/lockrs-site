@@ -91,8 +91,8 @@ export default function HomePage() {
                   One encrypted file on your disk
                 </h2>
                 <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted md:text-base">
-                  Master password to unlock. Import from other tools. Hashes for
-                  API keys. Panic when you need to hide the vault fast.
+                  Master password to unlock. Import and hashes for API keys.
+                  Panic locks the vault, clears the clipboard, and wipes memory.
                 </p>
               </div>
             </div>

@@ -77,7 +77,7 @@ export const FEATURES: Feature[] = [
     icon: EyeOff,
     title: "Wiped from RAM",
     description:
-      "Copied values are overwritten in memory with zeroize after use.",
+      "After copy, values are zeroized in memory. Panic clears the clipboard and wipes what is left in RAM.",
   },
   {
     icon: Sparkles,
@@ -89,7 +89,7 @@ export const FEATURES: Feature[] = [
     icon: TriangleAlert,
     title: "Panic button",
     description:
-      "Locks instantly. No prompt. Your file on disk is untouched.",
+      "Locks instantly, clears the clipboard, and wipes sensitive memory. Your vault file on disk stays put.",
   },
 ];
 
@@ -123,7 +123,7 @@ export const BENEFITS: Benefit[] = [
   {
     title: "Panic button",
     description:
-      "One click to lock when someone is at your desk.",
+      "One click to lock, clear the clipboard, and wipe secrets from memory.",
   },
   {
     title: "Small project",
@@ -223,7 +223,7 @@ export const SECURITY_CLAIMS: SecurityClaim[] = [
   },
   {
     title: "Keys cleared from RAM",
-    body: "Lock or Panic drops session keys. Clipboard data is zeroized in Rust after copy.",
+    body: "Lock drops session keys. Panic also clears the clipboard and zeroizes sensitive memory in Rust.",
   },
   {
     title: "While unlocked",
@@ -295,9 +295,9 @@ export const TRUST_PARAGRAPHS = [
 ];
 
 export const PANIC_PARAGRAPHS = [
-  "Panic sends you back to the unlock screen immediately.",
-  "Use it when you need the app locked now. Nothing on disk is deleted.",
-  "You will need your master password again, same as after a normal lock.",
+  "Panic locks the vault and returns you to the unlock screen — no confirmation step.",
+  "It also clears the clipboard and wipes sensitive data from memory so copied passwords do not linger.",
+  "Nothing on disk is deleted. You need your master password again, same as after a normal lock.",
 ];
 
 export const SECURITY_PARAGRAPHS = [
@@ -305,5 +305,6 @@ export const SECURITY_PARAGRAPHS = [
   "Entries are AES-256-GCM encrypted. Without the password, a copied vault file is garbage.",
   "Unlock derives a short-lived key in RAM. It is cleared on lock or Panic.",
   "Copy-to-clipboard runs in Rust and zeroizes the buffer right after the write.",
+  "Panic goes further: it clears the clipboard and wipes remaining secrets from memory.",
   "An unlocked session is visible to anyone at your machine. Panic is the mitigation.",
 ];
