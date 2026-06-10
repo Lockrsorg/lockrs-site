@@ -4,21 +4,24 @@ import {
   ArrowRight,
   Building2,
   Github,
+  KeyRound,
   Shield,
   Sparkles,
   XCircle,
 } from "lucide-react";
 import { CompetitorCard } from "@/components/competitor-card";
+import { ContributeSection } from "@/components/contribute-section";
 import { DownloadSection } from "@/components/download-section";
 import { FeatureCard } from "@/components/feature-card";
-import { LockrsLogo } from "@/components/lockrs-logo";
 import { OG_IMAGE_URL, SITE_URL } from "@/lib/site";
 import {
   BENEFITS,
   COMPANY_CRITIQUE,
   COMPETITORS,
+  COMPARISON_FOOTNOTE,
   FEATURES,
   GITHUB_ORG_URL,
+  HOME_CTA,
   HOME_HIGHLIGHTS,
 } from "@/lib/content";
 
@@ -116,7 +119,9 @@ export default function HomePage() {
           <div className="relative overflow-hidden rounded-[calc(var(--radius-lg)-4px)] border border-white/5 bg-black/40 p-8 md:p-12">
             <div className="absolute inset-0 bg-gradient-to-br from-white/[0.06] to-transparent" />
             <div className="relative z-10 flex flex-col items-center gap-6 text-center md:flex-row md:text-left">
-              <LockrsLogo size={88} className="shadow-glow" />
+              <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/10 shadow-glow">
+                <KeyRound className="h-8 w-8" aria-hidden />
+              </span>
               <div>
                 <h2 className="font-display text-xl font-semibold tracking-tight md:text-2xl">
                   Your vault. Your device. Not their datacenter.
@@ -250,43 +255,33 @@ export default function HomePage() {
           </div>
 
           <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-muted">
-            Comparisons are about architecture and incentives, not dunking on users
-            who already picked a tool. If your threat model requires sync, weigh
-            that honestly — then decide who holds the ciphertext.
+            {COMPARISON_FOOTNOTE}
           </p>
         </div>
       </section>
 
+      <ContributeSection />
+
       <DownloadSection />
 
-      {/* CTA */}
-      <section className="border-t border-white/5 py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="glass-card mx-auto max-w-3xl p-10 text-center md:p-14">
-            <div className="relative z-10">
-              <h2 className="font-display text-2xl font-semibold tracking-tight md:text-3xl">
-                Do not trust us. Verify us.
-              </h2>
-              <p className="mx-auto mt-4 max-w-lg text-muted">
-                Every security claim lives in the repository. No hidden sync, no
-                proprietary crypto — just code you can read while corporate vaults
-                ask for blind faith.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                <Link href="/about" className="btn-primary">
-                  Explore trust & security
-                </Link>
-                <a
-                  href={GITHUB_ORG_URL}
-                  className="btn-secondary"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Github className="h-4 w-4" aria-hidden />
-                  Lockrsorg on GitHub
-                </a>
-              </div>
-            </div>
+      <section className="border-t border-white/5 py-8">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 sm:flex-row sm:gap-6">
+          <p className="text-center text-sm text-muted sm:text-left">
+            {HOME_CTA.text}
+          </p>
+          <div className="flex shrink-0 flex-wrap items-center justify-center gap-3">
+            <Link href="/about" className="btn-secondary text-sm">
+              {HOME_CTA.aboutLabel}
+            </Link>
+            <a
+              href={GITHUB_ORG_URL}
+              className="btn-secondary text-sm"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github className="h-4 w-4" aria-hidden />
+              {HOME_CTA.githubLabel}
+            </a>
           </div>
         </div>
       </section>

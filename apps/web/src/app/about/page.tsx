@@ -5,7 +5,6 @@ import { LockrsLogo } from "@/components/lockrs-logo";
 import { TrustBadgeRow } from "@/components/trust-badge";
 import {
   AUTHOR_DISCORD_URL,
-  BTN_DISCORD_URL,
   GITHUB_ORG_URL,
   ORIGIN_PARAGRAPHS,
   PANIC_PARAGRAPHS,
@@ -59,11 +58,7 @@ export default function AboutPage() {
                 <a href={AUTHOR_DISCORD_URL} target="_blank" rel="noopener noreferrer">
                   St3ix
                 </a>
-                , with{" "}
-                <a href={BTN_DISCORD_URL} target="_blank" rel="noopener noreferrer">
-                  2btn
-                </a>{" "}
-                — independent developers, open source only.
+                .
               </p>
             </div>
           </section>

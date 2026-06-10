@@ -3,6 +3,7 @@ import { LockrsLogo } from "@/components/lockrs-logo";
 
 const NAV = [
   { href: "/", label: "Home" },
+  { href: "/#contribute", label: "Contribute" },
   { href: "/#download", label: "Download" },
   { href: "/about", label: "Trust & security" },
 ] as const;

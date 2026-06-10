@@ -1,6 +1,8 @@
 import type { LucideIcon } from "lucide-react";
 import {
   EyeOff,
+  Hash,
+  Import,
   KeyRound,
   Lock,
   Shield,
@@ -10,11 +12,10 @@ import {
 
 export const GITHUB_ORG_URL = "https://github.com/Lockrsorg";
 
+export const DISCORD_SUPPORT_URL = "https://discord.gg/DhaSM9FAZE";
+
 export const AUTHOR_DISCORD_URL =
   "https://discord.com/users/1451891299396616206";
-
-export const BTN_DISCORD_URL =
-  "https://discord.com/users/1459198464457048250";
 
 export interface Feature {
   icon: LucideIcon;
@@ -46,76 +47,88 @@ export const FEATURES: Feature[] = [
     icon: Shield,
     title: "Local-first",
     description:
-      "Everything stays on your device. No cloud, accounts, or telemetry.",
+      "The vault lives on your machine. No account, no sync server, no telemetry.",
   },
   {
     icon: KeyRound,
     title: "Master password",
     description:
-      "Argon2id fingerprint only — your plain master password is never stored.",
+      "Lockrs stores an Argon2id fingerprint, not your password.",
   },
   {
     icon: Lock,
     title: "Encrypted vault",
     description:
-      "Every entry is encrypted with AES-256-GCM before it is saved on your device.",
+      "Entries are AES-256-GCM encrypted before they are written to disk.",
+  },
+  {
+    icon: Import,
+    title: "Import",
+    description:
+      "Move passwords in from another manager instead of typing them again.",
+  },
+  {
+    icon: Hash,
+    title: "Hashes",
+    description:
+      "Save hashes for API keys and tokens — not only login passwords.",
   },
   {
     icon: EyeOff,
     title: "Wiped from RAM",
     description:
-      "Copied passwords are overwritten in memory with zeroize right after use.",
+      "After copy, values are zeroized in memory. Panic clears the clipboard and wipes what is left in RAM.",
   },
   {
     icon: Sparkles,
     title: "Offline",
     description:
-      "Core features work without a network. Your secrets never leave this machine.",
+      "No network required. Data stays on the device.",
   },
   {
     icon: TriangleAlert,
     title: "Panic button",
     description:
-      "Instantly lock your vault — no confirmation, no delay. Data stays on disk.",
+      "Locks instantly, clears the clipboard, and wipes sensitive memory. Your vault file on disk stays put.",
   },
 ];
 
 export const HOME_HIGHLIGHTS = [
-  "Open source you can audit",
-  "Rust + Tauri desktop app",
+  "Open source",
+  "Rust + Tauri",
   "Argon2id · AES-256-GCM · zeroize",
 ];
 
 export const BENEFITS: Benefit[] = [
   {
-    title: "No corporate vault on their servers",
+    title: "No server copy",
     description:
-      "Your encrypted blob is not a recurring revenue asset sitting in someone else's datacenter, waiting for a breach notice email.",
+      "The vault is a file on your drive. Nobody else hosts it for you.",
   },
   {
-    title: "No \"trust our security team\" theater",
+    title: "Readable source",
     description:
-      "Marketing pages love words like \"military-grade\" and \"zero-knowledge.\" Lockrs gives you the repo. Read it or fork it.",
+      "Check the repo if you want proof, not a landing page promise.",
   },
   {
-    title: "No subscription ransom for your own passwords",
+    title: "No subscription",
     description:
-      "You already own the hardware. You should not rent access to secrets that never needed the cloud in the first place.",
+      "Free software. You own the hardware; you should not pay monthly to access your own passwords.",
   },
   {
-    title: "No silent updates you cannot review",
+    title: "Reviewable updates",
     description:
-      "When the client is open source, a shady build is a community problem — not a buried changelog footnote.",
+      "See what changed before you install a new build.",
   },
   {
-    title: "Panic when reality walks through the door",
+    title: "Panic button",
     description:
-      "Big products optimize for sync and sharing. Lockrs optimizes for locking instantly when you need to disappear.",
+      "One click to lock, clear the clipboard, and wipe secrets from memory.",
   },
   {
-    title: "Built by two developers, not a compliance department",
+    title: "Small project",
     description:
-      "No investor deck demanding growth metrics on your credential graph. Just software that does one job on your machine.",
+      "Built by one developer. No enterprise upsell path.",
   },
 ];
 
@@ -124,63 +137,66 @@ export const COMPETITORS: Competitor[] = [
     name: "Proton Pass",
     type: "Privacy-branded cloud vault",
     summary:
-      "Better marketing than most, still a company holding the keys to your sync story.",
+      "Good privacy story. Still built around sync when you turn it on.",
     rows: [
       {
         label: "Vault location",
-        lockrs: "Only on your disk",
-        them: "Proton servers when sync is on",
+        lockrs: "Your disk",
+        them: "Proton when sync is on",
       },
       {
         label: "Client code",
-        lockrs: "Fully open — audit the app",
-        them: "Open core; hosted stack is their product",
+        lockrs: "Open repo",
+        them: "Open core only",
       },
       {
-        label: "Business model",
-        lockrs: "No account required",
-        them: "Subscription tiers, ecosystem upsell",
+        label: "Account",
+        lockrs: "Not required",
+        them: "Proton account",
       },
       {
-        label: "Offline by default",
-        lockrs: "Yes — network optional",
-        them: "Cloud features are the point",
+        label: "Offline default",
+        lockrs: "Yes",
+        them: "Sync is the main path",
       },
     ],
     critique:
-      "Proton sells trust in a brand. That is still trust — just with nicer Swiss typography. If their server-side code misbehaves, your local client cannot save you from what already left your machine.",
+      "Anything that syncs still depends on their servers. Local-only is a different tradeoff.",
   },
   {
     name: "1Password",
-    type: "Enterprise darling",
+    type: "Enterprise password manager",
     summary:
-      "Polished, expensive, and utterly opaque where it counts.",
+      "Polished app, closed source, paid plans.",
     rows: [
       {
         label: "Source code",
-        lockrs: "Public repository",
-        them: "Closed source",
+        lockrs: "Public",
+        them: "Closed",
       },
       {
-        label: "Who can verify crypto?",
-        lockrs: "Anyone with Git and patience",
-        them: "Their internal team and NDAs",
+        label: "Verify crypto",
+        lockrs: "Clone the repo",
+        them: "Trust the vendor",
       },
       {
-        label: "Pricing",
-        lockrs: "Free software — you pay nothing to them",
-        them: "Monthly tax on your identity",
+        label: "Price",
+        lockrs: "Free software",
+        them: "Subscription",
       },
       {
-        label: "Incident history",
-        lockrs: "No cloud to breach",
-        them: "Remember when enterprise vendors email you apologies?",
+        label: "Hosted vault",
+        lockrs: "None",
+        them: "Yes",
       },
     ],
     critique:
-      "1Password is a company first and a vault second. Their incentives are seats, families plans, and enterprise contracts — not your ability to prove what the binary does at 2 a.m.",
+      "Their business is subscriptions and teams. You get a product; you do not get full transparency.",
   },
 ];
+
+export const COMPARISON_FOOTNOTE =
+  "Sync across devices is coming to Lockrs — not available yet. For now, the vault stays on one machine.";
 
 export const TRUST_BADGES = [
   "Open source",
@@ -199,80 +215,102 @@ export interface SecurityClaim {
 export const SECURITY_CLAIMS: SecurityClaim[] = [
   {
     title: "Master password never stored",
-    body: "Only an Argon2id fingerprint is kept to verify unlock attempts.",
+    body: "Only an Argon2id fingerprint is saved for unlock checks.",
   },
   {
     title: "Encrypted at rest",
-    body: "Entries use AES-256-GCM. Without your master password, copied vault data is unreadable.",
+    body: "AES-256-GCM on every entry. Copy the vault file without the password and it is useless.",
   },
   {
-    title: "Keys wiped from RAM",
-    body: "Session keys are cleared when you lock or hit Panic. Copy uses zeroize in Rust after clipboard write.",
+    title: "Keys cleared from RAM",
+    body: "Lock drops session keys. Panic also clears the clipboard and zeroizes sensitive memory in Rust.",
   },
   {
-    title: "Unlocked session honesty",
-    body: "If someone uses your PC while Lockrs is open, they see what you see — that is why Panic exists.",
+    title: "While unlocked",
+    body: "Someone at your keyboard can see what you see. Use Panic.",
   },
 ];
 
 export const COMPANY_CRITIQUE = {
-  headline: "Big Tech and VC-backed vendors are not on your side",
+  headline: "Why most vaults push the cloud",
   intro:
-    "Password managers became a category because companies realized your credentials are recurring revenue. They will never show you the same urgency about local-only storage that they show about growth charts.",
+    "Subscriptions and sync are how the big products make money. A file on your SSD does not fit that model.",
   points: [
     {
-      title: "Closed source is a confession",
-      body: "If the security story were bulletproof, they would ship the code. Hiding implementation is not humility — it is liability management for them, risk absorption for you.",
+      title: "Closed clients",
+      body: "You get a binary and a FAQ. You do not get the full picture of what runs on your PC.",
     },
     {
-      title: "Cloud sync is a feature and a liability",
-      body: "Every server copy is another place a misconfiguration, insider, subpoena, or breach can surface. \"Encrypted\" on their disk still means you are betting on their ops team forever.",
+      title: "Extra copies",
+      body: "Sync puts ciphertext on someone else's hardware. That is another thing to protect forever.",
     },
     {
-      title: "Audits are not your audits",
-      body: "SOC 2 PDFs and bug-bounty badges are marketing for buyers, not reproducible proof for users. You get a logo; they get a checklist.",
+      title: "Audit PDFs",
+      body: "Compliance reports help companies buy software. They are not a substitute for reading code.",
     },
     {
-      title: "Free tiers are onboarding, not charity",
-      body: "If you are not paying, you are still the product — habituated into a vault format that becomes painful to leave once your life is inside.",
+      title: "Free plans",
+      body: "Cheap entry, painful exit once everything is already inside.",
     },
     {
-      title: "Corporations optimize for retention, not paranoia",
-      body: "Lockrs does not need your email, your family plan upsell, or your enterprise SSO deal. It needs to encrypt a file on your SSD and get out of the way.",
+      title: "Upsells",
+      body: "Lockrs does not need your email or a family bundle. It writes an encrypted file and stops.",
     },
   ],
 };
 
 export const DOWNLOAD = {
   headline: "Download Lockrs",
-  subline:
-    "Desktop builds for Windows, macOS, and Linux are in active development.",
+  subline: "Windows, macOS, and Linux builds are on the way.",
   status: "Coming soon",
-  note: "Follow development on GitHub until installers are published. No waitlist, no account — we are not building another funnel.",
+  note: "Installers will show up on GitHub. No waitlist.",
+};
+
+export const HOME_CTA = {
+  text: "Security write-ups on the site match what is in GitHub.",
+  aboutLabel: "Trust & security",
+  githubLabel: "Source on GitHub",
+};
+
+export const CONTRIBUTE = {
+  label: "Contribute",
+  headline: "Help build Lockrs",
+  lead:
+    "The project is open source. PRs, bug reports, and testing all help — and people who stick around can earn roles on our Discord.",
+  items: [
+    "Send a pull request on GitHub (Rust backend, Tauri UI)",
+    "Open issues with clear repro steps",
+    "Join the support server to test builds and talk through ideas",
+  ],
+  githubCta: "Open GitHub",
+  discordTitle: "Discord roles for contributors",
+  discordBody:
+    "If you keep helping — code, docs, or community — you can get an official role on the Lockrs support server.",
+  discordCta: "Join support server",
 };
 
 export const ORIGIN_PARAGRAPHS = [
-  "I did not trust most password managers — closed source, run by large companies, built by teams I cannot verify. I had no way to know what they actually do with my secrets.",
-  "Lockrs is the alternative I wanted: local, open source, and written so every security claim can be checked in the repository — not just believed from a landing page.",
+  "Most password managers I tried were closed source and run by companies I cannot audit.",
+  "I built Lockrs to keep the vault local, ship the code in public, and state security claims you can actually check.",
 ];
 
 export const TRUST_PARAGRAPHS = [
-  "When code is hidden, you are trusting a brand — not proof. You cannot audit encryption, logging, sync behavior, or backdoors. You only get promises.",
-  "Proprietary password managers ask you to hand over the keys to your digital life while showing you nothing about how those keys are handled.",
-  "Open source does not guarantee perfection, but it guarantees visibility. Anyone can inspect the code, report issues, and verify that Lockrs does what it claims — or fork it if they disagree.",
-  'Lockrs uses proven algorithms (Argon2id, AES-256-GCM) and keeps them in plain sight. Nothing critical is "trust us, we handled it." Either it is documented, or it is in the code.',
+  "With closed source you trust marketing. You cannot see how crypto, logging, or sync are implemented.",
+  "Open source does not mean perfect. It means the behavior is visible — and forkable if you disagree.",
+  "Lockrs uses Argon2id and AES-256-GCM. The docs and the repo are where those details live.",
 ];
 
 export const PANIC_PARAGRAPHS = [
-  "The red Panic button instantly locks your vault and sends you back to the unlock screen — no confirmation, no delay.",
-  "Use it when someone walks in, you need to hide that Lockrs is open, or you want the app locked immediately. Your saved data stays on your device; nothing is deleted.",
-  "After panic, your master password is required again — the same as closing and reopening the app while unlocked.",
+  "Panic locks the vault and returns you to the unlock screen — no confirmation step.",
+  "It also clears the clipboard and wipes sensitive data from memory so copied passwords do not linger.",
+  "Nothing on disk is deleted. You need your master password again, same as after a normal lock.",
 ];
 
 export const SECURITY_PARAGRAPHS = [
-  "Lockrs never saves your master password as plain text. Only an Argon2id fingerprint is kept to verify unlock attempts.",
-  "Your entries are encrypted with AES-256-GCM. Without the master password, saved data is unreadable — even if someone copies it off your machine.",
-  "When you unlock, a temporary key is derived in memory and wiped when you lock or hit Panic. Guessing that key means guessing your master password, which is designed to be slow and costly to brute-force.",
-  "When you copy a password, Lockrs handles it entirely in Rust: the value is written to your clipboard, then immediately overwritten in RAM with zeroize.",
-  "If Lockrs is already unlocked while someone uses your computer, they could view what you can see — that is why Panic exists. No password manager can fully protect an active, unlocked session.",
+  "The master password is never stored in plain text — only an Argon2id fingerprint.",
+  "Entries are AES-256-GCM encrypted. Without the password, a copied vault file is garbage.",
+  "Unlock derives a short-lived key in RAM. It is cleared on lock or Panic.",
+  "Copy-to-clipboard runs in Rust and zeroizes the buffer right after the write.",
+  "Panic goes further: it clears the clipboard and wipes remaining secrets from memory.",
+  "An unlocked session is visible to anyone at your machine. Panic is the mitigation.",
 ];

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { LockrsLogo } from "@/components/lockrs-logo";
 import {
   AUTHOR_DISCORD_URL,
-  BTN_DISCORD_URL,
+  DISCORD_SUPPORT_URL,
   GITHUB_ORG_URL,
 } from "@/lib/content";
 
@@ -33,21 +33,20 @@ export function SiteFooter() {
             GitHub
           </a>
           <a
+            href={DISCORD_SUPPORT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition hover:text-foreground"
+          >
+            Discord
+          </a>
+          <a
             href={AUTHOR_DISCORD_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="transition hover:text-foreground"
           >
             St3ix
-          </a>
-          <span className="text-white/20">·</span>
-          <a
-            href={BTN_DISCORD_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition hover:text-foreground"
-          >
-            2btn
           </a>
         </div>
 
