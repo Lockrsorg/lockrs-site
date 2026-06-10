@@ -3,6 +3,7 @@ import { DM_Sans, Outfit } from "next/font/google";
 import { Backdrop } from "@/components/backdrop";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -16,12 +17,11 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: "Lockrs — Local-first password manager",
-    template: "%s · Lockrs",
+  metadataBase: new URL(SITE_URL),
+  icons: {
+    icon: "/icon.png",
+    apple: "/icon.png",
   },
-  description:
-    "Open-source password manager with a local vault, Argon2id, AES-256-GCM, import, and API key hashes.",
 };
 
 export default function RootLayout({

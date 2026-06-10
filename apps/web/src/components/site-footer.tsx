@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Shield } from "lucide-react";
+import { LockrsLogo } from "@/components/lockrs-logo";
 import {
   AUTHOR_DISCORD_URL,
-  DISCORD_SUPPORT_URL,
+  BTN_DISCORD_URL,
   GITHUB_ORG_URL,
 } from "@/lib/content";
 
@@ -10,14 +10,12 @@ export function SiteFooter() {
   return (
     <footer className="mt-auto border-t border-white/5">
       <div className="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-12 md:flex-row md:items-center md:justify-between">
-        <div className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5">
-            <Shield className="h-4 w-4" aria-hidden />
-          </span>
+        <div className="flex items-center gap-4">
+          <LockrsLogo size="lg" />
           <div>
             <p className="font-display font-semibold">Lockrs</p>
             <p className="text-sm text-muted">
-              Local password manager · open source
+              Local-first password manager · open source
             </p>
           </div>
         </div>
@@ -35,20 +33,21 @@ export function SiteFooter() {
             GitHub
           </a>
           <a
-            href={DISCORD_SUPPORT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition hover:text-foreground"
-          >
-            Discord
-          </a>
-          <a
             href={AUTHOR_DISCORD_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="transition hover:text-foreground"
           >
             St3ix
+          </a>
+          <span className="text-white/20">·</span>
+          <a
+            href={BTN_DISCORD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition hover:text-foreground"
+          >
+            2btn
           </a>
         </div>
 

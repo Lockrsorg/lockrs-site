@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Github, Shield, TriangleAlert } from "lucide-react";
+import { ArrowLeft, Github, TriangleAlert } from "lucide-react";
+import { LockrsLogo } from "@/components/lockrs-logo";
 import { TrustBadgeRow } from "@/components/trust-badge";
 import {
   AUTHOR_DISCORD_URL,
+  BTN_DISCORD_URL,
   GITHUB_ORG_URL,
   ORIGIN_PARAGRAPHS,
   PANIC_PARAGRAPHS,
@@ -11,11 +13,19 @@ import {
   TRUST_BADGES,
   TRUST_PARAGRAPHS,
 } from "@/lib/content";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Trust & security",
+  title: "About — lockrs",
   description:
-    "Why Lockrs exists, how the vault is protected, and where to read the source.",
+    "lockrs is built by a small team that believes your passwords are none of our business. Learn about the project, the tech stack, and the people behind it.",
+  alternates: {
+    canonical: `${SITE_URL}/about`,
+  },
+  openGraph: {
+    title: "About — lockrs",
+    url: `${SITE_URL}/about`,
+  },
 };
 
 export default function AboutPage() {
@@ -28,12 +38,11 @@ export default function AboutPage() {
         </Link>
 
         <header className="about-hero animate-fade-up">
-          <span className="about-hero__icon">
-            <Shield className="h-7 w-7" aria-hidden />
-          </span>
+          <LockrsLogo size={80} className="mx-auto mb-6 shadow-glow" />
           <h1 className="about-hero__title">Trust &amp; security</h1>
           <p className="about-hero__lead">
-            Background, crypto basics, and links to the repo.
+            Why Lockrs exists, what it protects, and what you can verify yourself
+            in the repository.
           </p>
           <TrustBadgeRow badges={TRUST_BADGES} className="mt-8" />
         </header>
@@ -50,7 +59,11 @@ export default function AboutPage() {
                 <a href={AUTHOR_DISCORD_URL} target="_blank" rel="noopener noreferrer">
                   St3ix
                 </a>
-                .
+                , with{" "}
+                <a href={BTN_DISCORD_URL} target="_blank" rel="noopener noreferrer">
+                  2btn
+                </a>{" "}
+                — independent developers, open source only.
               </p>
             </div>
           </section>

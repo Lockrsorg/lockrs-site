@@ -1,26 +1,58 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
   ArrowRight,
   Building2,
   Github,
-  KeyRound,
   Shield,
   Sparkles,
   XCircle,
 } from "lucide-react";
 import { CompetitorCard } from "@/components/competitor-card";
-import { ContributeSection } from "@/components/contribute-section";
 import { DownloadSection } from "@/components/download-section";
 import { FeatureCard } from "@/components/feature-card";
+import { LockrsLogo } from "@/components/lockrs-logo";
+import { OG_IMAGE_URL, SITE_URL } from "@/lib/site";
 import {
   BENEFITS,
   COMPANY_CRITIQUE,
   COMPETITORS,
-  COMPARISON_FOOTNOTE,
   FEATURES,
   GITHUB_ORG_URL,
   HOME_HIGHLIGHTS,
 } from "@/lib/content";
+
+export const metadata: Metadata = {
+  title: "lockrs — Local Password Manager",
+  description:
+    "lockrs is a local, open-source password manager built with Rust and Tauri. No cloud. No subscriptions. Your passwords stay on your device. Always.",
+  keywords: [
+    "password manager",
+    "local password manager",
+    "open source password manager",
+    "offline password manager",
+    "no cloud password manager",
+    "rust password manager",
+  ],
+  alternates: {
+    canonical: `${SITE_URL}/`,
+  },
+  openGraph: {
+    title: "lockrs — Local Password Manager",
+    description:
+      "No cloud. No subscriptions. Your passwords, encrypted on your device.",
+    url: SITE_URL,
+    type: "website",
+    images: [{ url: OG_IMAGE_URL }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "lockrs — Local Password Manager",
+    description:
+      "No cloud. No subscriptions. Your passwords, encrypted on your device.",
+    images: [OG_IMAGE_URL],
+  },
+};
 
 export default function HomePage() {
   return (
@@ -34,14 +66,15 @@ export default function HomePage() {
           </p>
 
           <h1 className="font-display text-4xl font-semibold leading-[1.1] tracking-tight md:text-6xl md:leading-[1.05]">
-            <span className="text-gradient">A password vault</span>
+            <span className="text-gradient">Passwords you can</span>
             <br />
-            <span className="text-gradient">on your machine.</span>
+            <span className="text-gradient">actually verify.</span>
           </h1>
 
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted md:text-xl">
-            Local vault, AES-256-GCM, open source. Read the repo if you want to
-            see how it is built.
+            Lockrs keeps your vault on your machine — encrypted, auditable, and
+            free from the cloud vendors who treat your credentials like recurring
+            revenue.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -83,16 +116,15 @@ export default function HomePage() {
           <div className="relative overflow-hidden rounded-[calc(var(--radius-lg)-4px)] border border-white/5 bg-black/40 p-8 md:p-12">
             <div className="absolute inset-0 bg-gradient-to-br from-white/[0.06] to-transparent" />
             <div className="relative z-10 flex flex-col items-center gap-6 text-center md:flex-row md:text-left">
-              <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/10 shadow-glow">
-                <KeyRound className="h-8 w-8" aria-hidden />
-              </span>
+              <LockrsLogo size={88} className="shadow-glow" />
               <div>
                 <h2 className="font-display text-xl font-semibold tracking-tight md:text-2xl">
-                  One encrypted file on your disk
+                  Your vault. Your device. Not their datacenter.
                 </h2>
                 <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted md:text-base">
-                  Master password to unlock. Import and hashes for API keys.
-                  Panic locks the vault, clears the clipboard, and wipes memory.
+                  One master password unlocks AES-256-GCM encrypted entries.
+                  Panic locks instantly. Copy-to-clipboard clears memory with
+                  zeroize in Rust — no trust-me slide deck required.
                 </p>
               </div>
             </div>
@@ -106,10 +138,11 @@ export default function HomePage() {
           <div className="mx-auto max-w-2xl text-center">
             <p className="section-label">Benefits</p>
             <h2 className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
-              Why local matters
+              What you get when a company is not in the middle
             </h2>
             <p className="mt-4 text-muted md:text-lg">
-              Your vault stays on your drive. No sync server required.
+              Lockrs is not nicer marketing on the same cloud model. It is a
+              different shape: local file, open code, zero account.
             </p>
           </div>
 
@@ -137,7 +170,7 @@ export default function HomePage() {
       <section className="mx-auto max-w-6xl px-6 py-20 md:py-24">
         <p className="section-label">How it works</p>
         <h2 className="text-center font-display text-3xl font-semibold tracking-tight md:text-4xl">
-          What the app does
+          Security you can read, not just believe
         </h2>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {FEATURES.map((feature, index) => (
@@ -149,7 +182,7 @@ export default function HomePage() {
             href="/about"
             className="inline-flex items-center gap-2 text-sm font-medium text-muted transition hover:text-foreground"
           >
-            Trust & security details
+            Deep dive: trust & security
             <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
         </div>
@@ -204,7 +237,9 @@ export default function HomePage() {
               Compared to cloud vaults
             </h2>
             <p className="mt-4 text-muted md:text-lg">
-              Quick look at how Lockrs differs from two common cloud options.
+              Same category, opposite incentives. These products are not evil
+              cartoons — they are rational businesses. Rational for them. Expensive
+              for your threat model.
             </p>
           </div>
 
@@ -215,14 +250,46 @@ export default function HomePage() {
           </div>
 
           <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-muted">
-            {COMPARISON_FOOTNOTE}
+            Comparisons are about architecture and incentives, not dunking on users
+            who already picked a tool. If your threat model requires sync, weigh
+            that honestly — then decide who holds the ciphertext.
           </p>
         </div>
       </section>
 
-      <ContributeSection />
-
       <DownloadSection />
+
+      {/* CTA */}
+      <section className="border-t border-white/5 py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="glass-card mx-auto max-w-3xl p-10 text-center md:p-14">
+            <div className="relative z-10">
+              <h2 className="font-display text-2xl font-semibold tracking-tight md:text-3xl">
+                Do not trust us. Verify us.
+              </h2>
+              <p className="mx-auto mt-4 max-w-lg text-muted">
+                Every security claim lives in the repository. No hidden sync, no
+                proprietary crypto — just code you can read while corporate vaults
+                ask for blind faith.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+                <Link href="/about" className="btn-primary">
+                  Explore trust & security
+                </Link>
+                <a
+                  href={GITHUB_ORG_URL}
+                  className="btn-secondary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github className="h-4 w-4" aria-hidden />
+                  Lockrsorg on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
